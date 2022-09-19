@@ -1,0 +1,184 @@
+/* UTILITIES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: cursive;
+}
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+h5{
+    font-size: 20px;
+}
+
+
+/********** NAVBAR STARTS **********/
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    padding: 10px;
+}
+.nav-links a {
+    color: black;
+}
+/* LOGO */
+.logo {
+    font-size: 20px;
+}
+/* NAVBAR MENU */
+.menu {
+    display: flex;
+    gap: 1em;
+    font-size: 18px;
+}
+/* DROPDOWN MENU */
+.services {
+    position: relative; 
+}
+.dropdown {
+    padding: 1em 0;
+    position: absolute; /*WITH RESPECT TO PARENT*/
+    display: none;
+    border-radius: 8px;
+    top: 35px;
+}
+.dropdown li + li {
+    margin-top: 10px;
+}
+.dropdown li {
+    padding: 0.5em 1em;
+    width: 8em;
+    text-align: center;
+}
+.dropdown li:hover {
+    background-color: #4c9e9e;
+}
+.services:hover .dropdown {
+    display: block;
+}
+
+
+/********** RESPONSIVE NAVBAR MENU STARTS *********/
+/* CHECKBOX HACK */
+input[type=checkbox]{
+    display: none;
+}  
+/*HAMBURGER MENU*/
+.hamburger {
+    display: none;
+    font-size: 24px;
+    user-select: none;
+}
+/* APPLYING MEDIA QUERIES */
+@media (max-width: 768px) {
+   .menu { 
+    display:none;
+    position: absolute;
+    background-color:teal;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 16px 0;
+   }
+   .menu li:hover {
+    display: inline-block;
+    background-color:#4c9e9e;
+    transition: 0.3s ease;
+   }
+   .menu li + li {
+    margin-top: 12px;
+   }
+   input[type=checkbox]:checked ~ .menu{
+    display: block;
+   }
+   .hamburger {
+    display: block;
+   }
+   .dropdown {
+    left: 50%;
+    top: 30px;
+    transform: translateX(35%);
+   }
+   .dropdown li:hover {
+    background-color: #4c9e9e;
+   }
+}
+
+/********** BANNER STARTS **********/
+.banner{
+    height: 300px;
+    background-color: rgb(216, 229, 246);
+    display: flex;
+    align-items: center;
+}
+.banner h1{
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+/********** HOMEBODY STARTS **********/
+.home-body{
+    width: 1200px;
+    height: 100%;
+    padding: 10px 0;
+    margin: 10px auto;
+    background-color: blue;
+}
+/* SMALL ROW */
+.row-1{
+    background-color: red;
+    display: grid;
+}
+.column-2{
+    grid-row: 1;
+    margin: 10px;
+    background-color: rgb(216, 229, 246);
+    display: flex;
+    align-items: center;
+}
+.column-2 h5{
+    float: left;
+    margin-left: 10px;
+}
+.small-img-container{
+    height: 50px;
+    width: 80px;
+    overflow: hidden;
+    float: left;
+}
+.small-img-container img{
+    width: 100%;
+}
+/* LARGE ROW */
+.row-2{
+    background-color: green;
+    display: grid;
+    padding: 10px 0;
+}
+.column-4{
+    grid-row:1;
+    height: 220px;
+    width: 280px;
+    background-color: rgb(216, 229, 246);
+    margin: 0 10px;
+    margin-top: 10px;
+}
+.column-4 h5{
+    background-color: yellow;
+    text-align: center;
+}
+.large-img-container{
+    height: 200px;
+    overflow: hidden;
+}
+.large-img-container img{
+    width: 100%;
+}
