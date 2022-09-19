@@ -32,6 +32,7 @@ h5{
 /* LOGO */
 .logo {
     font-size: 20px;
+    font-weight: bolder;
 }
 /* NAVBAR MENU */
 .menu {
@@ -82,7 +83,7 @@ input[type=checkbox]{
    .menu { 
     display:none;
     position: absolute;
-    background-color:teal;
+    background-color:white;
     right: 0;
     left: 0;
     text-align: center;
@@ -124,29 +125,35 @@ input[type=checkbox]{
     font-size: 2rem;
 }
 
-/********** HOMEBODY STARTS **********/
-.home-body{
-    width: 1200px;
-    height: 100%;
-    padding: 10px 0;
-    margin: 10px auto;
-    background-color: blue;
+
+/********** BODY COLUMN START **********/
+
+.grid{
+	width: 1200px;
+	margin: 20px auto;
+    padding: 10px;
 }
-/* SMALL ROW */
-.row-1{
-    background-color: red;
-    display: grid;
-}
-.column-2{
-    grid-row: 1;
-    margin: 10px;
-    background-color: rgb(216, 229, 246);
+.promotions-container{
     display: flex;
     align-items: center;
+    height: 50px;
 }
-.column-2 h5{
-    float: left;
+.promotions-container h5{
     margin-left: 10px;
+}
+.col-50{
+	width: 49%;
+	float: left;
+    background-color: rgb(216, 229, 246);
+    margin: 0.5%;
+    align-items: center;
+}
+.col-25{
+	width: 24%;
+	float: left;
+    background-color: rgb(216, 229, 246);
+    text-align: center;
+    margin: 0.5%;
 }
 .small-img-container{
     height: 50px;
@@ -157,28 +164,44 @@ input[type=checkbox]{
 .small-img-container img{
     width: 100%;
 }
-/* LARGE ROW */
-.row-2{
-    background-color: green;
-    display: grid;
-    padding: 10px 0;
-}
-.column-4{
-    grid-row:1;
-    height: 220px;
-    width: 280px;
-    background-color: rgb(216, 229, 246);
-    margin: 0 10px;
-    margin-top: 10px;
-}
-.column-4 h5{
-    background-color: yellow;
-    text-align: center;
-}
 .large-img-container{
     height: 200px;
     overflow: hidden;
 }
 .large-img-container img{
     width: 100%;
+}
+
+@media (min-width: 600px) and (max-width:1201px) {
+	.grid{
+        width: 90%;
+    }
+    .col-50{
+        width: 49%;
+        margin: 0.5%;
+    }
+    .col-25{
+        width: 49%;
+        margin: 0.5%;
+    }
+}
+
+@media (min-width: 360px) and (max-width:601px) {
+    .banner{
+        height: 500px;
+    }
+	.grid{
+        width: 90%;
+    }
+    .col-50{
+        width: 100%;
+        margin: 2% 0;
+    }
+    .col-25{
+        width: 100%;
+        margin: 2% 0;
+    }
+    .large-img-container{
+        height: 300px;
+    }
 }
