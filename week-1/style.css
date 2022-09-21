@@ -82,6 +82,7 @@ input[type=checkbox]{
 /* APPLYING MEDIA QUERIES */
 @media (max-width: 768px) {
    .menu { 
+    min-width: 360px;
     display:none;
     position: absolute;
     background-color:white;
