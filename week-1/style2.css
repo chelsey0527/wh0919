@@ -137,6 +137,13 @@ input[type=checkbox]{
 	margin: 20px auto;
     padding: 10px;
 }
+.fa-star{
+    color: rgb(255, 208, 0);
+    font-size: 30px !important;
+    position: relative;
+    top: -95%;
+    right: -40%;
+}
 .promotions-container{
     display: flex;
     align-items: center;
@@ -144,6 +151,12 @@ input[type=checkbox]{
 }
 .promotions-container h5{
     margin-left: 10px;
+}
+.title-container{
+    height: 30px;
+    background-color: white;
+    opacity: 70%;
+    margin-top: -30px;
 }
 .col-50{
 	width: 49%;
@@ -154,6 +167,7 @@ input[type=checkbox]{
 }
 .col-25{
 	width: 24%;
+    height: 200px;
 	float: left;
     background-color: rgb(216, 229, 246);
     text-align: center;
@@ -171,6 +185,7 @@ input[type=checkbox]{
 .large-img-container{
     height: 200px;
     overflow: hidden;
+    z-index: 0;
 }
 .large-img-container img{
     width: 100%;
@@ -190,7 +205,7 @@ input[type=checkbox]{
     }
 }
 
-@media (min-width: 360px) and (max-width:601px) {
+@media (min-width: 450px) and (max-width:601px) {
     .banner{
         height: 500px;
     }
@@ -204,9 +219,39 @@ input[type=checkbox]{
     .col-25{
         width: 100%;
         margin: 2% 0;
+        margin-bottom: 12%;
     }
     .large-img-container{
-        height: 300px;
+        height: 120%;
+    }
+    .fa-star{
+        top: -110%;
+        right: -40%;
+    }
+}
+
+@media (min-width: 361px) and (max-width:451px) {
+    .banner{
+        height: 500px;
+    }
+	.grid{
+        width: 90%;
+    }
+    .col-50{
+        width: 100%;
+        margin: 2% 0;
+    }
+    .col-25{
+        width: 100%;
+        margin: 2% 0;
+        margin-bottom: 14%;
+    }
+    .large-img-container{
+        height: 120%;
+    }
+    .fa-star{
+        top: -110%;
+        right: -40%;
     }
 }
 
@@ -224,8 +269,13 @@ input[type=checkbox]{
     .col-25{
         width: 100%;
         margin: 2% 0;
+        margin-bottom: 15%;
     }
     .large-img-container{
-        height: 300px;
+        height: 120%;
+    }
+    .fa-star{
+        top: -110%;
+        right: -40%;
     }
 }
