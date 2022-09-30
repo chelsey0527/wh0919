@@ -14,9 +14,9 @@ function multiple(nums){
     const mNums = [];
     let count = 0;
     // console.log(mNums);
-    for(i in nums){
+    for(let i in nums){
         // console.log("nums-1 = "+ nums.length-1);
-        for (j = nums.length-1; j>i; j--){
+        for (let j = nums.length-1; j>i; j--){
             // console.log("inside j");
             if (i != j){
                 total = nums[i]*nums[j];
@@ -34,8 +34,8 @@ function multiple(nums){
 
 function sort(mNums){
     let temp = 0
-    for(i in mNums){
-        for (j = mNums.length-1; j>i; j--){
+    for(let i in mNums){
+        for (let j = mNums.length-1; j>i; j--){
             if (mNums[j] < mNums[i]){
                 temp = mNums[i];
                 mNums[i] = mNums[j];

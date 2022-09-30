@@ -8,7 +8,7 @@ function maxZeros(nums){
     let max = 0
     let count = 0
 
-    for (i = 0; i < nums.length; i++){
+    for (let i = 0; i < nums.length; i++){
         if (nums[i] == target){
             count += 1
             if (i == nums.length-1){

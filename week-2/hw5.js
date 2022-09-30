@@ -9,8 +9,8 @@ function twoSum(nums, target){
     //     size += 1;
     // }
     
-    for(j = 0; j < nums.length; j++){
-        for( k = nums.length - 1; k >= 0; k--){
+    for(let j = 0; j < nums.length; j++){
+        for(let k = nums.length - 1; k >= 0; k--){
             if ( nums[j] + nums[k] == target){
                 return [j, k]
             }

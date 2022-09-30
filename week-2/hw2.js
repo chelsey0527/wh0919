@@ -2,12 +2,11 @@
 
 function avg(data){
     // 請用你的程式補完這個函式的區塊
-    let i = 0
     let totalSalary = 0
     let totalEmployees = 0
     let average = 0
 
-    for( i = 0; i < data.employees.length; i++){
+    for( let i = 0; i < data.employees.length; i++){
         // console.log("----- inside loop -----");
         for (let employees of data.employees) {
             if (employees.manager === false) {
