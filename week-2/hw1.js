@@ -1,6 +1,6 @@
 function calculate(min, max, step){
     // 請用你的程式補完這個函式的區塊
-    ans = 0;
+    let ans = 0;
     while (min <= max){
         ans += min;
         min += step;

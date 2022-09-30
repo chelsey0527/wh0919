@@ -2,20 +2,20 @@
 
 def maxZeros(nums):
     # 請用你的程式補完這個函式的區塊
-    length = 0
-    for l in nums:
-        length += 1
+    # length = 0
+    # for l in nums:
+    #     length += 1
 
     target = 0
     max = 0
     count = 0
 
-    for i in range(length):
+    for i in range(len(nums)):
         if nums[i] == target:
             count += 1
             # print(i," = 0，所以 count+1 變成",count)
             #當最後一位是 0 時要停止
-            if i == length - 1:
+            if i == len(nums) - 1:
                 if count > max:
                     # print(i,"是最後一位，且 != 0，所以 count ", count," 清空，並且放到 max")
                     # 如果斷掉的時候的 count 0 比 max 大就要替換掉再歸零

@@ -2,10 +2,10 @@
 
 function avg(data){
     // 請用你的程式補完這個函式的區塊
-    i = 0
-    totalSalary = 0
-    totalEmployees = 0
-    average = 0
+    let i = 0
+    let totalSalary = 0
+    let totalEmployees = 0
+    let average = 0
 
     for( i = 0; i < data.employees.length; i++){
         // console.log("----- inside loop -----");

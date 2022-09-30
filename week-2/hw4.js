@@ -10,9 +10,9 @@ function maxProduct(nums){
 
 //把全部兩兩相乘
 function multiple(nums){
-    total = 0;
+    let total = 0;
     const mNums = [];
-    count = 0;
+    let count = 0;
     // console.log(mNums);
     for(i in nums){
         // console.log("nums-1 = "+ nums.length-1);
@@ -33,7 +33,7 @@ function multiple(nums){
 }
 
 function sort(mNums){
-    temp = 0
+    let temp = 0
     for(i in mNums){
         for (j = mNums.length-1; j>i; j--){
             if (mNums[j] < mNums[i]){

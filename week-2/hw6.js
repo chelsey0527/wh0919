@@ -4,9 +4,9 @@
 function maxZeros(nums){
     // 請用你的程式補完這個函式的區塊
 
-    target = 0
-    max = 0
-    count = 0
+    let target = 0
+    let max = 0
+    let count = 0
 
     for (i = 0; i < nums.length; i++){
         if (nums[i] == target){

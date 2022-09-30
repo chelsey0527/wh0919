@@ -3,7 +3,7 @@
 function func(a){
     // 請用你的程式補完這個函式的區塊
     return function (b, c){
-        ans = 0;
+        let ans = 0;
         ans += a+b*c;
         console.log(ans);
     };

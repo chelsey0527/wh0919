@@ -8,33 +8,35 @@ def maxProduct(nums):
     print(multiple(nums))
     
 #取得大小
-def getSize(nums):
-    length = 0
-    for i in nums:
-        length += 1
-    # print("length:", length)
-    return length
+# def getSize(nums):
+#     length = 0
+#     for i in nums:
+#         length += 1
+#     return length
 
 #把全部兩兩相乘
 def multiple(nums):
-    size = getSize(nums)
+    # size = getSize(nums)
+    size = len(nums)
     total = 0
     #使用list來存取不固定數量的資料值
     mNums = []
     for i in range(0, size):
-            for j in range (size-1, 0, -1):
-                if ( i != j ):
-                    # print(nums[i]*nums[j])
-                    total = nums[i]*nums[j]
-                    mNums.append(total)
+        for j in range (size-1, 0, -1):
+            if ( i != j ):
+                # print(nums[i]*nums[j])
+                total = nums[i]*nums[j]
+                mNums.append(total)
     # print(mNums) 
     sort(mNums)
+    size2 = len(mNums)
     #回傳排序後的結果的最後一位
-    return mNums[getSize(mNums)-1] 
+    return mNums[size2-1] 
+    # chanya0527
     
 #排序
 def sort(mNums):
-    size = getSize(mNums)
+    size = len(mNums)
     temp = 0
     for i in range(0, size):
         # print("value of i", i)

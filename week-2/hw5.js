@@ -4,13 +4,13 @@
 
 function twoSum(nums, target){
     // your code here
-    size = 0
-    for(i in nums){
-        size += 1;
-    }
+    // size = 0
+    // for(i in nums){
+    //     size += 1;
+    // }
     
-    for(j = 0; j < size; j++){
-        for( k = size - 1; k >= 0; k--){
+    for(j = 0; j < nums.length; j++){
+        for( k = nums.length - 1; k >= 0; k--){
             if ( nums[j] + nums[k] == target){
                 return [j, k]
             }

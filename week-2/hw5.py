@@ -4,12 +4,12 @@
 
 def twoSum(nums, target):
     # your code here
-    size = 0
-    for i in nums:
-        size += 1
+    # size = 0
+    # for i in nums:
+    #     size += 1
 
-    for j in range(size):
-        for k in range(size-1, j, -1):
+    for j in range( len(nums) ):
+        for k in range( len(nums)-1, j, -1):
             if (nums[j] + nums[k]) == target:
                 # print("[",nums[j],",",nums[k],"]")
                 return [j, k]
