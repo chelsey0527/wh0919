@@ -49,7 +49,7 @@ with open("testdata.csv", "w", encoding="utf-8") as file:
         
             # 輸出精度、緯度、圖案網址
             file.write(desti["longitude"]+","+desti["latitude"]+",")
-            file.write(desti["file"].split(".jpg")[0]+".jpg\n\n")
+            file.write(desti["file"].split(".jpg")[0]+".jpg\n")
         # else:
             # print("---- < 2015 -----\n")
 
