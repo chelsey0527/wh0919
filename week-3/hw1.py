@@ -28,9 +28,6 @@ dlist=data["result"]["results"]
 #     print(company["stitle"],",",company["MRT"])
 
 # 把資料存在檔案中
-
-import re
-
 with open("testdata.csv", "w", encoding="utf-8") as file:
     for desti in dlist:
 
