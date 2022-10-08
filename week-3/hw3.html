@@ -1,4 +1,5 @@
 <!-- https://www.youtube.com/watch?v=6X8sDGFGRss -->
+<!-- https://www.youtube.com/watch?v=zikLN9XHy4I&list=PLV4JYm2zPZQfIYdNnmWfqbZgyeyuuGYjc&index=25&t=921s&ab_channel=ChartJS -->
 
 <!DOCTYPE html>
 <html>
@@ -29,19 +30,10 @@
     </div>
 
     <div id="div-grid" class="grid">
-        
     </div>
 
      <!-- AJAX 連線 -->
      <script>
-
-        
-           
-        
-
-
-
-
         onload = function getData(){
             fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json").then(function(response){
                 return response.json();
@@ -92,19 +84,19 @@
                     // 操作：h5 elemnt 中附加 stitle 的 value
                     h5element.append(document.createTextNode(stitle));
                    
-                    // 取得: files (images)
-                    let images = data.result.results[i].file;
+                    // 先把所有 .JPG 換成 .jpg 避免後續判斷錯誤
+                    var images = imagesResult.replace(".JPG", ".jpg");
                     let image = "";
-                    
                     if (images != null){
-                        image = images.substring( 0, images.indexOf(".jpg",".JPG"))+".jpg";
+                        let temp = images.split(".jpg");
+                        image = temp[0]+".jpg";
                     }
                     // 操作: 建立 img element
                     var imgElement = document.createElement("img");
                     // 操作: 賦予 src value
                     imgElement.setAttribute("src", image);
                    
-                
+                    
                     // 最後把所有 element 串起來
                     divImageContainer.appendChild(imgElement);
                     divH5Container.appendChild(h5element);
