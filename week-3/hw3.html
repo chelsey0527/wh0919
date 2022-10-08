@@ -1,0 +1,124 @@
+<!-- https://www.youtube.com/watch?v=6X8sDGFGRss -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>1003</title>
+<link href="./hw3style.css" media="screen" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+   
+    <nav class="navbar">
+        <div class="logo">My Website</div>
+        <ul class="nav-links">
+          <input type="checkbox" id="checkbox_toggle" />
+          <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+          <div class="menu">
+            <li><a href="/wh0919/week-3/home.html">Item 1</a></li>
+            <li><a href="/wh0919/week-3/home.html">Item 2</a></li>
+            <li><a href="/wh0919/week-3/home.html">Item 3</a></li>
+            <li><a href="/wh0919/week-3/home.html">Item 4</a></li>
+          </div>
+        </ul>
+    </nav>
+
+    <div class="banner" id="banner">
+        <h1>Welcome to MyHome</h1>
+    </div>
+
+    <div id="div-grid" class="grid">
+        
+    </div>
+
+     <!-- AJAX 連線 -->
+     <script>
+
+        
+           
+        
+
+
+
+
+        onload = function getData(){
+            fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json").then(function(response){
+                return response.json();
+            // promise 的概念
+            }).then(function(data){ 
+
+                // hw3 要求 10 個可以寫死
+                // for(let i=0; i<10; i++){
+                for(let i=0; i<10; i++){
+
+                    // 建立 div 內需要的內容
+                        // <div id="div-col-50" class="col-50">
+                        //     <div id="div-small-img-container" class="small-img-container">
+                        //         <!-- <img src="./src/flower.jpeg"> -->
+                        //     </div>
+                        //     <div id="div-small-img-h5-container" class="promotions-container">
+                        //         <!-- <h5 id="sitetitle"></h5> -->
+                        //     </div>
+                        // </div>
+                    
+                    // 以下內容都會新增在 div#grid 內
+                    const cardBox = document.querySelector("#div-grid")
+                    // 建立 div 內需要的 架構 // 前兩筆會放在小的
+                    const divContainer = document.createElement("div");
+                    if(i<2){
+                        divContainer.className = "col-50";
+                    }else{
+                        divContainer.className = "col-25";
+                    }
+                    const divImageContainer = document.createElement("div");
+                    if(i<2){
+                        divImageContainer.className = "small-img-container";
+                    }else{
+                        divImageContainer.className = "large-img-container";;
+                    }
+                    const divH5Container = document.createElement("div");
+                    if(i<2){
+                        divH5Container.className = "promotions-container";
+                    }else{
+                        divImageContainer.className = "large-img-container";;
+                    }
+                
+                    
+                    // 取得: title
+                    let stitle = data.result.results[i].stitle;
+                    // 操作: 建立 h5 element
+                    var h5element = document.createElement("h5");
+                    // 操作：h5 elemnt 中附加 stitle 的 value
+                    h5element.append(document.createTextNode(stitle));
+                   
+                    // 取得: files (images)
+                    let images = data.result.results[i].file;
+                    let image = "";
+                    
+                    if (images != null){
+                        image = images.substring( 0, images.indexOf(".jpg",".JPG"))+".jpg";
+                    }
+                    // 操作: 建立 img element
+                    var imgElement = document.createElement("img");
+                    // 操作: 賦予 src value
+                    imgElement.setAttribute("src", image);
+                   
+                
+                    // 最後把所有 element 串起來
+                    divImageContainer.appendChild(imgElement);
+                    divH5Container.appendChild(h5element);
+                    // 利用 document fragment 協助 append multiple child into an element
+                    var documentFragment = document.createDocumentFragment();
+                    documentFragment.appendChild(divContainer);
+                    divContainer.appendChild(divImageContainer);
+                    divContainer.appendChild(divH5Container);
+                    cardBox.appendChild(documentFragment);
+
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
