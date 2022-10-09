@@ -134,9 +134,9 @@ input[type=checkbox]{
 
 .grid{
 	width: 1200px;
-    height: 100%;
 	margin: 20px auto 100px auto;
     padding: 10px;
+    overflow: hidden;    /* 解決 float 無法被讀取高度的問題 */
 }
 .promotions-container{
     display: flex;
@@ -183,10 +183,11 @@ input[type=checkbox]{
 }
 
 .button-container{
-    height: 100;
+    /* position: fixed; */
+    bottom: 0px;
+    height: 100px;
     width: 1200px;
-    margin: 0 auto;
-    z-index: 2;
+    margin: 100px auto 0px auto;
 }
 
 .button-container button{
@@ -195,7 +196,8 @@ input[type=checkbox]{
     border: none;
     padding: 10px;
     display: block;
-    margin: 0 auto;
+    /* margin: 10px auto; */
+    margin: 50px auto 0px auto;
 }
 
 @media (min-width: 600px) and (max-width:1201px) {
@@ -209,6 +211,9 @@ input[type=checkbox]{
     .col-25{
         width: 49%;
         margin: 0.5%;
+    }
+    .button-container{
+        width: 90%;
     }
 }
 

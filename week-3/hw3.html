@@ -60,22 +60,13 @@
                     const divContainer = document.createElement("div");
                     if(i<2){
                         divContainer.className = "col-50";
-                    }else{
-                        divContainer.className = "col-25";
-                    }
-                    const divImageContainer = document.createElement("div");
-                    if(i<2){
                         divImageContainer.className = "small-img-container";
-                    }else{
-                        divImageContainer.className = "large-img-container";;
-                    }
-                    const divH5Container = document.createElement("div");
-                    if(i<2){
                         divH5Container.className = "promotions-container";
                     }else{
+                        divContainer.className = "col-25";
+                        divImageContainer.className = "large-img-container";;
                         divImageContainer.className = "large-img-container";;
                     }
-                
                     
                     // 取得: title
                     let stitle = data.result.results[i].stitle;
