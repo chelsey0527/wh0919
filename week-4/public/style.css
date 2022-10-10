@@ -18,13 +18,13 @@ body{
 
 form, .content-container{
     width: 300px;
-    margin: 100px auto;
+    margin: 100px auto 50px auto;
     font-size: 20px;
     text-align: center;
 }
 
 form input{
-    width: 80%;
+    width: 70%;
     height: 30px;
     margin-top: 5px;
 }
@@ -32,5 +32,4 @@ form input{
 form button{
     margin-top: 50px;
     height: 30px;
-
 }

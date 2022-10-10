@@ -59,6 +59,17 @@ def signout():
     session["boologin"] = False
     return redirect(url_for("index"))
 
+# 計算結果頁面
+@app.route("/square/<int:answer>")
+def square(answer):
+    return render_template("square.html",  answer=answer)
+
+@app.route("/calculateSquare")
+def calculateSquare():
+    number = request.args.get("number", 0)
+    number = int(number)
+    answer = number*number
+    return redirect(url_for("square", answer=answer))
 
 # flask 的 session 有加密機制，可以自行設定密鑰
 app.secret_key="anystringbutsecret"
