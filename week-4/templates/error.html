@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet"  type="text/css" href="{{url_for('.static', filename='style.css')}}">
     <title>失敗頁面</title>
 
 </head>
@@ -12,6 +12,9 @@
     <div class="top-area">
         <h1>失敗頁面</h1>
     </div>
-    <h3>{{message}}</h3>
+    <div class="content-container">
+        <h3 >{{message}}</h3>
+        <a href="/">回到登入</a>
+    </div>
 </body>
 </html>

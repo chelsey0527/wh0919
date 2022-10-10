@@ -1,10 +1,36 @@
-*{
-    background-color: red;
+body{
+    margin: 0px;
 }
 
-
-
 .top-area{
+    margin-top: -30px;
+    height: 150px;
     background-color: rgb(27, 55, 97);
-    color: red;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.top-area h1{
+    line-height: 150px;
+    vertical-align: middle;
+    color: white;
+}
+
+form, .content-container{
+    width: 300px;
+    margin: 100px auto;
+    font-size: 20px;
+    text-align: center;
+}
+
+form input{
+    width: 80%;
+    height: 30px;
+    margin-top: 5px;
+}
+
+form button{
+    margin-top: 50px;
+    height: 30px;
+
 }

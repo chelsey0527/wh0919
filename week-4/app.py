@@ -33,15 +33,14 @@ def login():
         else:
             # return render_template("member.html")
             session["boologin"] = True
-            print("-----------logged in",session["boologin"])
             return redirect(url_for("member"))
 
 
 # 錯誤頁面
 @app.route("/error")
 def error():
-    message = request.args.get("message", None)
-    return render_template("error.html") + message
+    message = request.args.get("message", "預設")
+    return render_template("error.html", message=message)
 
 # 登入，進到 member 頁面
 @app.route("/member")
