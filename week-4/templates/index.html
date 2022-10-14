@@ -24,8 +24,11 @@
             <button>登入</button>
         </div>
     </form>
-    <hr>
-    <form action="/calculateSquare">
+    
+    
+    <hr> <!-- 分割線條 -->
+
+    <!-- <form action="/calculateSquare">
         <h3>計算正整數的平方</h3>
         <div>
             正整數 <input type="text" name="number"/>
@@ -33,6 +36,38 @@
         <div>
             <button>計算</button>
         </div>
-    </form>
+    </form> -->
+    <!-- <form action="/square(answer)"> -->
+    <!-- </form> -->
+
+    <div class="calculate-area">
+        <h3>計算正整數的平方</h3>
+        <div>
+            <!-- 透過 onchange 馬上取得input的資料值 -->
+            正整數 <input id="number" type="text" name="number" onchange="getNumbers(this.value)"/>
+        </div>
+        <div>
+            <!-- 按鈕觸發計算 -->
+            <button id="btnCalculate" onclick="calculate()">計算</button></a>
+        </div>
+    </div>
+        
+
 </body>
+
+<script>
+    let number = 0;
+
+    // 對取得的資料進行處理， calculate function 時使用
+    function getNumbers(num){
+        number = num;
+    }
+
+    function calculate() {
+        let ans = number*number;
+        // 透過 js 進行頁面跳轉，flask 必須有相對應的頁面進行 dynamic routing
+        return window.location.replace("/square/"+ans);
+    };
+</script>
+
 </html>

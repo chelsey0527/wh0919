@@ -31,7 +31,6 @@ def login():
             message = request.args.get("error", "帳號、密碼輸入錯誤")
             return redirect(url_for("error", message = message))
         else:
-            # return render_template("member.html")
             session["boologin"] = True
             return redirect(url_for("member"))
 
@@ -50,26 +49,35 @@ def member():
     else:
         return redirect(url_for("index"))
 
-# 登出
+# 登出，進到登入畫面
 @app.route("/signout")
 def signout():
-    # 登出後將 session 帳密移除
+    # 登出後將 session 帳密移除，並且是否登入顯示為 False
     session.pop("username", None)
     session.pop("password", None)
     session["boologin"] = False
     return redirect(url_for("index"))
 
-# 計算結果頁面
+# dynamic routing 格式設定，讓 js call 頁面時可以成功
 @app.route("/square/<int:answer>")
 def square(answer):
-    return render_template("square.html",  answer=answer)
+    return render_template('square.html', answer=answer)
 
-@app.route("/calculateSquare")
-def calculateSquare():
-    number = request.args.get("number", 0)
-    number = int(number)
-    answer = number*number
-    return redirect(url_for("square", answer=answer))
+
+# 原本的方法，但是比較繞圈
+# 計算結果頁面
+# @app.route("/square/<int:answer>")
+# def square(answer):
+#     number = request.args.get("number", 0)
+#     number = int(number)
+#     answer = number*number
+#     return render_template("square.html",  answer=answer)
+# @app.route("/calculateSquare")
+# def calculateSquare():
+#     number = request.args.get("number", 0)
+#     number = int(number)
+#     answer = number*number
+#     return redirect(url_for("square", answer=answer))
 
 # flask 的 session 有加密機制，可以自行設定密鑰
 app.secret_key="anystringbutsecret"

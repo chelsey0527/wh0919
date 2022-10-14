@@ -16,20 +16,20 @@ body{
     color: white;
 }
 
-form, .content-container{
+form, .content-container, .calculate-area{
     width: 300px;
     margin: 100px auto 50px auto;
     font-size: 20px;
     text-align: center;
 }
 
-form input{
+form input, .calculate-area input{
     width: 70%;
     height: 30px;
     margin-top: 5px;
 }
 
-form button{
+form button, .calculate-area button{
     margin-top: 50px;
     height: 30px;
 }
