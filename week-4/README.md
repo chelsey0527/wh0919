@@ -6,8 +6,8 @@ In this week, we are implementing flask as our web back-end framework.
 Flask is a web framework, it’s a Python module that let us develop web applications easily. 
 It’s has a small and easy-to-extend core: it’s a microframework that doesn’t include an ORM (Object Relational Manager) or such features.
 
-
 ## 2. Getting started
+( to be continue)
 
 
 
@@ -23,6 +23,11 @@ Flask will take the values you put into the session object and serialize them in
 <br>
 User could look at the contents of your cookie instead of modify it, unless they know the signin secret key.
 <br>
+
+Cookies are small pieces of text sent to your browser by a website you visit. 
+They help that website remember information about your visit, which can both make it easier to visit the site again and make the site more useful to you.
+<br>
+Cookies can cleard by ***clear vrowsing data*** function on your browser.
 
 If you want to handle session of server-side instead, several [Flask extensions](https://www.geeksforgeeks.org/how-to-use-flask-session-in-python-flask/) support this.
 <br>
