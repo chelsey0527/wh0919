@@ -27,7 +27,7 @@ User could look at the contents of your cookie instead of modify it, unless they
 Cookies are small pieces of text sent to your browser by a website you visit. 
 They help that website remember information about your visit, which can both make it easier to visit the site again and make the site more useful to you.
 <br>
-Cookies can cleard by ***clear vrowsing data*** function on your browser.
+Cookies can cleard by ***clear browsing data*** function on your browser.
 
 If you want to handle session of server-side instead, several [Flask extensions](https://www.geeksforgeeks.org/how-to-use-flask-session-in-python-flask/) support this.
 <br>
