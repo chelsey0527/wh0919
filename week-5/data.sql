@@ -39,7 +39,28 @@ SELECT SUM(follower_count) FROM member;
 SELECT AVG(follower_count) FROM member;
 
 
-
+---------- HW5 ----------
+CREATE TABLE message(
+	id bigint AUTO_INCREMENT,
+	member_id bigint NOT NULL,
+	content varchar(255) NOT NULL,
+	like_count int unsigned NOT NULL DEFAULT 0,
+	time datetime NOT NULL DEFAULT current_timestamp(),
+	PRIMARY KEY (id),
+	FOREIGN KEY (member_id) REFERENCES member(id)
+);
+--- 1 --- 
+SELECT message.content, member.name
+FROM message
+INNER JOIN member ON member.id = message.member_id;
+--- 2 ---
+SELECT member.username, message.content
+FROM member
+INNER JOIN message ON member.id = message.member_id WHERE member.username="test";
+--- 3 ---
+SELECT AVG(message.like_count)
+FROM member
+INNER JOIN message ON member.id = message.member_id WHERE member.username="test";
 
 
 
