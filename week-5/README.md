@@ -2,7 +2,7 @@
 Fundamental knowledge about MySQL.
 
 
-# Getting Started
+# ✨ Getting Started
 
 ## Connect to your MySQL
 1. Go to your MySQL folder
@@ -29,7 +29,7 @@ use <databasename>;
 ```
 
 
-# Homeworks
+# 📖 Homeworks
 
 ## task 2 : create member table
 Use create table <tablename> to create your table
@@ -156,3 +156,8 @@ INNER JOIN message ON member.id = message.member_id WHERE member.username="test"
 ```
 ![task5-1](https://github.com/chelsey0527/wh0919/blob/develop/week-5/images/task5-3.png)
 
+# Backup your database
+Using mysqldump
+```
+/usr/local/mysql/bin/mysqldump -u [user name (or root)] -p[password] [DB name] > [filename].sql
+```
