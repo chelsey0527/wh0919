@@ -73,9 +73,13 @@ SELECT * FROM member ORDER BY time DESC;
   
 ### 4. Get values in intervals
 ```
-SELECT * FROM member WHERE id>1 AND id<5 ORDER BY time DESC;
+SELECT * 
+FROM (
+	SELECT *, row_number() OVER (ORDER BY time DESC) as rnt FROM member
+)t 
+WHERE t.rnt>1 and t.rnt<5;
 ```
-![task3-4](https://github.com/chelsey0527/wh0919/blob/develop/week-5/images/task3-4.png)
+![task3-4](https://github.com/chelsey0527/wh0919/blob/main/week-5/images/task3-4.png)
 
 ### 5. Get values with username
 ```
