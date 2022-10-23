@@ -73,6 +73,11 @@ SELECT * FROM member ORDER BY time DESC;
   
 ### 4. Get values in intervals
 ```
+--- Return 3 records from row 2. Which is 2~4 ---
+SELECT * FROM member ORDER BY time DESC LIMIT 1,3;
+```
+or
+```
 SELECT * 
 FROM (
 	SELECT *, row_number() OVER (ORDER BY time DESC) as rnt FROM member
