@@ -116,7 +116,3 @@ def signout():
     return redirect(url_for("index"))
 
 app.run(port=3000, debug=True)
-
-
-
-# MySQL 通訊協定?
