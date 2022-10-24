@@ -1,7 +1,7 @@
 import mysql.connector
 import time
 import datetime
-from flask import Flask, make_response, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for
 
 # ---------- MySQL DB ----------
 mydb = mysql.connector.connect(
@@ -38,19 +38,17 @@ def login():
         # POST query String **機密資訊必用**
         username = request.form["userName"]
         pw = request.form["password"]
-        # executemany when there are several values 
         cursor.execute("SELECT * FROM member WHERE username=%(username)s AND password=%(password)s", {"username": username, "password":pw})
         record = cursor.fetchall()
         # If record exist, put the data into our session with record[column]
         if record:
-            print("-------------- 成功找到 reocrd ---------------")
+            # 取第一筆資料即可，資料庫中理應只有唯一用戶
             session["userStatus"] = True
             session["name"] = record[0][1]
             session["userName"] = record[0][2]
             session["password"] = record[0][3]
-            # 記錄成功之後將使用者導向 member 頁面
             return redirect(url_for("member"))
-        # Username or password incorrect
+        # No record means username or password incorrect
         else:
             message = request.args.get("error", "帳號或密碼輸入錯誤")
             return redirect(url_for("error", message = message))
@@ -80,6 +78,7 @@ def signup():
             session["name"] = name
             session["userName"] = username
             session["password"] = pw
+            # Set timestamp
             ts = time.time()
             timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
             insert_mem = (
@@ -88,17 +87,15 @@ def signup():
             )
             data = (name, username, pw, 0, timestamp)
             cursor.execute(insert_mem, data)
-            mydb.commit() # 把資料打進去
+            mydb.commit() # 要有這行才能成功把資料打進去
             print("資料輸入完畢")
             return redirect(url_for("member"))
-
 
 # ---------- 錯誤頁面 ----------
 @app.route("/error")
 def error():
     message = request.args.get("message", "預設")
     return render_template("error.html", message=message)
-
 
 # ---------- 登入，進到 member 頁面 ----------
 @app.route("/member")
@@ -107,7 +104,6 @@ def member():
         return render_template("member.html", name = session["name"])
     else:
         return redirect(url_for("index"))
-
 
 # ---------- 登出，進到登入畫面 ----------
 @app.route("/signout" , methods=["GET"])
@@ -118,9 +114,6 @@ def signout():
     session.pop("userName", None)
     session.pop("password", None)
     return redirect(url_for("index"))
-
-
-
 
 app.run(port=3000, debug=True)
 
