@@ -7,7 +7,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="5074Av.ril",
+    password="",
     database="website",
     charset="utf8",
 )
@@ -44,6 +44,7 @@ def login():
         if record:
             # 取第一筆資料即可，資料庫中理應只有唯一用戶
             session["userStatus"] = True
+            session["userId"] = record[0][0]
             session["name"] = record[0][1]
             session["userName"] = record[0][2]
             session["password"] = record[0][3]
@@ -100,10 +101,36 @@ def error():
 # ---------- 登入，進到 member 頁面 ----------
 @app.route("/member")
 def member():
+    # comment_list = []
+    # cursor.execute("SELECT content FROM message ")
+    # record = cursor.fetchall()
+    # comment_list.append(record)
+    # session["messages"] = comment_list
     if session["userStatus"] == True:
         return render_template("member.html", name = session["name"])
+        # return render_template("member.html", name = session["name"],messages = session["messages"])
     else:
         return redirect(url_for("index"))
+
+# ---------- 留言功能 ---------- 
+# @app.route("/comment", methods=["POST"])
+# def comment():
+#     if session["userStatus"]==True:
+#         # POST query String **機密資訊必用**
+#         comm = request.form["comment"]
+#         ts = time.time()
+#         timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+#         insert_mes = (
+#             "INSERT INTO message (member_id, content, like_count, time)"
+#             "VALUES(%s, %s, %s, %s)"
+#         )
+#         data = (session["userId"], comm, 0, timestamp)
+#         cursor.execute(insert_mes, data)
+#         # mydb.commit() # 要有這行才能成功把資料打進去
+#         print("資料輸入完畢")
+#         print(data)
+#         return redirect(url_for("member"))
+        
 
 # ---------- 登出，進到登入畫面 ----------
 @app.route("/signout" , methods=["GET"])
