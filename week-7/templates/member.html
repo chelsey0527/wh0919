@@ -71,12 +71,9 @@
                 "name" : uname
             })
         }).then(function(response){
-            // console.log(response);
             return response.text();
         }).then(function(json){ 
             let object = JSON.parse(json);
-            // console.log("object: "+object);
-            // console.log(object.ok);
             let resultText = document.querySelector("#update-result-area")
             if (object.ok == true){
                 resultText.innerHTML = "更新成功";

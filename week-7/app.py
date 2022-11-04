@@ -135,12 +135,11 @@ def api_member():
         fields=cursor.description
         column_list=[]
         if session["userStatus"]:
-            # mark it as raw to avoid true/false not defined
             data = {
                 "ok":True
             }
             cursor.execute("UPDATE member SET name=%(name)s WHERE username=%(username)s;", {"name":uname, "username": session["userName"]})
-            mydb.commit() # 要有這行才能成功把資料打進去
+            mydb.commit() 
         else:
             data = {
                 "error":True
