@@ -1,0 +1,35 @@
+body{
+    margin: 0px;
+}
+
+.top-area{
+    margin-top: -30px;
+    height: 150px;
+    background-color: rgb(27, 55, 97);
+    vertical-align: middle;
+    text-align: center;
+}
+
+.top-area h1{
+    line-height: 150px;
+    vertical-align: middle;
+    color: white;
+}
+
+form, .content-container, .calculate-area{
+    width: 300px;
+    margin: 100px auto 50px auto;
+    font-size: 20px;
+    text-align: center;
+}
+
+form input, .calculate-area input, input{
+    width: 70%;
+    height: 30px;
+    margin-top: 5px;
+}
+
+form button, .calculate-area button{
+    margin-top: 50px;
+    height: 30px;
+}
