@@ -12,29 +12,29 @@
         <h1>歡迎光臨，這是會員頁</h1>
     </div>
     <div class="content-container">｀
-        <h3>{{currentusername}}，歡迎登入系統</h3>
+        <h3>{{currentname}}，歡迎登入系統</h3>
         <a href="/signout">登出系統</a>
     </div>
-    <a href="/member">退回 mem 頁面</a>
     <div class="content-container">
         <h3>查詢會員姓名</h3>
         <input type="text" name="susername"/>
-        <button id="search-button" onclick="onClick()">查詢</button>
-        <!-- <div id="result-area"></div> -->
-        <p id="result-area"></p>
+        <button id="query-button" onclick="onClickQuery()">查詢</button>        
+        <p id="query-result-area"></p>
+    </div>
+    <div class="content-container">
+        <h3>更新會員姓名</h3>
+        <input type="text" name="uname"/>
+        <button id="update-button" onclick="onClickUpdate()">更新</button>
+        <p id="update-result-area"></p>
     </div>
 </body>
 <script>
 
-    let name = "";
-
-    // 前端從欄位拿到要的值
-    function onClick() {
-        let btn = document.getElementById("search-button");
+    // 搜尋帳號：前端從欄位拿到要的值
+    function onClickQuery() {
+        let btn = document.getElementById("query-button");
         susername = btn.previousElementSibling.value;
-        console.log("username received from form: "+susername);
-
-         // 把欄位的值打回後端去搜資料庫
+         // 利用欄位的值去請求後端搜尋資料庫
         fetch("/api/member",{
             method:"POST",
             headers:{'content-type': 'application/json'},
@@ -42,27 +42,46 @@
                 "susername" : susername
             })
         }).then(function(response){
-            console.log(response.status);
+            // console.log(response.status);
             return response.text();
-        // promise 的概念
         }).then(function(json){ 
             // JSON is a string, so it doesn't have that property. 
             // We have to change it into object if we want to use it as an object
             let object = JSON.parse(json);
-            // console.log(json);
-            // console.log("object: "+object);
-            // console.log("json data: "+object.data.name);
-            // console.log("json dara id: "+object.data.username);
+            let resultText = document.querySelector("#query-result-area")
             if (object.data != "null"){
-                // createElement 在我們的頁面中
                 let name = object.data.name;
                 let username = object.data.username;
-                let resultText = document.querySelector("#result-area")
-                resultText.innerHTML = name+"("+username+")";
+                resultText.innerHTML = name+" ("+username+")";
             }else{
-                let resultText = document.querySelector("#result-area")
                 resultText.innerHTML = "查無此使用者";
-                // resultText.innerHTML = json.data;
+            }
+        });
+    }
+
+    // 更新帳號：前端從欄位拿到要更新的值
+    function onClickUpdate() {
+        let btn = document.getElementById("update-button");
+        uname = btn.previousElementSibling.value;
+         // 利用欄位的值去請求後端更新資料庫
+        fetch("/api/member",{
+            method:"PATCH",
+            headers:{'content-type': 'application/json'},
+            body: JSON.stringify({
+                "name" : uname
+            })
+        }).then(function(response){
+            // console.log(response);
+            return response.text();
+        }).then(function(json){ 
+            let object = JSON.parse(json);
+            // console.log("object: "+object);
+            // console.log(object.ok);
+            let resultText = document.querySelector("#update-result-area")
+            if (object.ok == true){
+                resultText.innerHTML = "更新成功";
+            }else{
+                resultText.innerHTML = "更新失敗QQ";
             }
         });
     

@@ -93,55 +93,60 @@ def error():
 @app.route("/member", methods=["GET"])
 def member():
     if session["userStatus"] == True:
-        return render_template("member.html", currentusername=session["name"])
+        return render_template("member.html", currentname=session["name"])
     else:
         return redirect(url_for("index"))
 
 # ---------- 查詢會員資料 API，return json 資料值 ----------
-@app.route("/api/member", methods=["POST","GET"])
+@app.route("/api/member", methods=["POST","GET","PATCH"])
 def api_member():
-    # 必須拿前端打進來的值
-    # title = request.json['title']
-    # title = "%" + title.replace(" ", "%") + "%"
-    
-    # 回傳訊息
-    dictResponse = {"success": False, "info": "搜尋失敗"}
     # 取得搜尋字串
-    susername = request.json['susername']
-    # 處理成 SQL 看得懂的格式
-    # susername = "%" + susername.replace(" ", "%") + "%"
-    cursor.execute("SELECT * FROM member WHERE username=%(susername)s", {"susername": susername})
-    record = cursor.fetchall()
-    fields=cursor.description
-    column_list=[]
-    if record:
-        # 新增屬性 results，將查詢結果送回前端頁面
-        dictResponse["success"] = True
-        dictResponse["info"] = "查詢成功"
-        # 抓取總欄位
-        for i in fields:
-            column_list.append(i[0])
-        # 把欄位中的資料放進結果列中
-        for row in record:
-            result = {}
-            result[column_list[0]] = row[0]
-            result[column_list[1]] = str(row[1])
-            result[column_list[2]] = str(row[2])
-            data = {
-                "data":{
-                    "id" : result[column_list[0]],
-                    "name" : result[column_list[1]],
-                    "username" : result[column_list[2]] 
+    if request.method == "POST":
+        susername = request.json['susername']
+        cursor.execute("SELECT * FROM member WHERE username=%(susername)s", {"susername": susername})
+        record = cursor.fetchall()
+        fields=cursor.description
+        column_list=[]
+        if record:
+            # 新增屬性 results，將查詢結果送回前端頁面
+            # 抓取總欄位
+            for i in fields:
+                column_list.append(i[0])
+            # 把欄位中的資料放進結果列中
+            for row in record:
+                result = {}
+                result[column_list[0]] = row[0]
+                result[column_list[1]] = str(row[1])
+                result[column_list[2]] = str(row[2])
+                data = {
+                    "data":{
+                        "id" : result[column_list[0]],
+                        "name" : result[column_list[1]],
+                        "username" : result[column_list[2]] 
+                    }
                 }
+        else:
+            data = {
+                "data":"null"
             }
-    else:
-        dictResponse["info"] = "查詢結果為空"
-        data = {
-            "data":"null"
-        }
-    ans = jsonify(data)
+        ans = jsonify(data)
+    elif request.method == "PATCH":
+        uname = request.json['name']
+        fields=cursor.description
+        column_list=[]
+        if session["userStatus"]:
+            # mark it as raw to avoid true/false not defined
+            data = {
+                "ok":True
+            }
+            cursor.execute("UPDATE member SET name=%(name)s WHERE username=%(username)s;", {"name":uname, "username": session["userName"]})
+            mydb.commit() # 要有這行才能成功把資料打進去
+        else:
+            data = {
+                "error":True
+            }
+        ans = jsonify(data)
     return ans
-       
     
 
 # ---------- 登出，進到登入畫面 ----------

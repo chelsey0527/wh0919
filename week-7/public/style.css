@@ -29,7 +29,7 @@ form input, .calculate-area input, input{
     margin-top: 5px;
 }
 
-form button, .calculate-area button{
-    margin-top: 50px;
+form button, button{
+    margin-top: 5px;
     height: 30px;
 }
