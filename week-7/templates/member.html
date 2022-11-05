@@ -12,7 +12,7 @@
         <h1>歡迎光臨，這是會員頁</h1>
     </div>
     <div class="content-container">｀
-        <h3>{{currentname}}，歡迎登入系統</h3>
+        <h3 id="current-name">{{currentname}}，歡迎登入系統</h3>
         <a href="/signout">登出系統</a>
     </div>
     <div class="content-container">
@@ -51,7 +51,6 @@
             method:"GET",
             headers:{
                 'content-type': 'application/json',
-                'qusername': qusername
             },
         }).then(function(response){
             // console.log(response.status);
@@ -88,8 +87,12 @@
         }).then(function(json){ 
             let object = JSON.parse(json);
             let resultText = document.querySelector("#update-result-area")
+            let currentName = document.querySelector("#current-name")
             if (object.ok == true){
                 resultText.innerHTML = "更新成功";
+                console.log(currentName);
+                currentName.innerHTML = uname+"，歡迎登入系統";
+                console.log("change:"+currentName);
             }else{
                 resultText.innerHTML = "更新失敗QQ";
             }
