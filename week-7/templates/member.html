@@ -17,7 +17,7 @@
     </div>
     <div class="content-container">
         <h3>查詢會員姓名</h3>
-        <input type="text" name="susername"/>
+        <input type="text" name="qusername"/>
         <button id="query-button" onclick="onClickQuery()">查詢</button>        
         <p id="query-result-area"></p>
     </div>
@@ -29,18 +29,30 @@
     </div>
 </body>
 <script>
+   
+
+    // const myInit = {
+    //     method: 'GET',
+    //     headers: myHeaders,
+    //     mode: 'cors',
+    //     cache: 'default',
+    // };
+
 
     // 搜尋帳號：前端從欄位拿到要的值
     function onClickQuery() {
         let btn = document.getElementById("query-button");
-        susername = btn.previousElementSibling.value;
+        qusername = btn.previousElementSibling.value;
+        const params = {
+            "qusername": qusername,
+        };
          // 利用欄位的值去請求後端搜尋資料庫
-        fetch("/api/member",{
-            method:"POST",
-            headers:{'content-type': 'application/json'},
-            body: JSON.stringify({
-                "susername" : susername
-            })
+        fetch("/api/member?username="+qusername,{
+            method:"GET",
+            headers:{
+                'content-type': 'application/json',
+                'qusername': qusername
+            },
         }).then(function(response){
             // console.log(response.status);
             return response.text();
@@ -48,8 +60,9 @@
             // JSON is a string, so it doesn't have that property. 
             // We have to change it into object if we want to use it as an object
             let object = JSON.parse(json);
+            console.log("object", object);
             let resultText = document.querySelector("#query-result-area")
-            if (object.data != "null"){
+            if (object.data != null){
                 let name = object.data.name;
                 let username = object.data.username;
                 resultText.innerHTML = name+" ("+username+")";

@@ -1,13 +1,12 @@
 import mysql.connector
 import time
 import datetime
-import json
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 # ---------- MySQL DB ----------
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="5074Av.ril",
+    password="",
     database="website",
     charset="utf8",
 )
@@ -98,12 +97,13 @@ def member():
         return redirect(url_for("index"))
 
 # ---------- 查詢會員資料 API，return json 資料值 ----------
-@app.route("/api/member", methods=["POST","GET","PATCH"])
+@app.route("/api/member", methods=["GET","PATCH"])
 def api_member():
     # 取得搜尋字串
-    if request.method == "POST":
-        susername = request.json['susername']
-        cursor.execute("SELECT * FROM member WHERE username=%(susername)s", {"susername": susername})
+    if request.method == "GET":
+        # 取得附加在 url 中的參數
+        qusername = request.args.get("username")
+        cursor.execute("SELECT * FROM member WHERE username=%(qusername)s", {"qusername": qusername})
         record = cursor.fetchall()
         fields=cursor.description
         column_list=[]
@@ -127,7 +127,7 @@ def api_member():
                 }
         else:
             data = {
-                "data":"null"
+                "data": None
             }
         ans = jsonify(data)
     elif request.method == "PATCH":
